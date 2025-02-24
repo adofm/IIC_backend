@@ -21,6 +21,5 @@ function sanityCheck(req, res, next) {
     next();
 }
 
-module.exports = sanityCheck;
-
+export default sanityCheck;
 // done as of now

@@ -1,8 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config();
-
 const userSchema = new Schema({
     Firstname: String,
     Lastname: String,
@@ -13,18 +9,6 @@ const userSchema = new Schema({
     CollageName: String,
 });
 const User = mongoose.model("User", userSchema);
-async function Connection() {
-    try {
-        await mongoose.connect(process.env.DB_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Database connected successfully");
-    } catch (error) {
-        console.error("Database connection failed", error);
-        process.exit(1);
-    }
-}
 async function createUser(userData) {
     try {
         const existingUser = await User.findOne({
@@ -42,4 +26,4 @@ async function createUser(userData) {
         process.exit(3);
     }
 }
-export { Connection, createUser };
+export default createUser
