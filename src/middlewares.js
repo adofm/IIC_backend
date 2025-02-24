@@ -8,7 +8,7 @@ const adminSchema = z.object({
 });
 
 function sanityCheck(req, res, next) {
-    const { username, password, email, number } = req.bod;
+    const { username, password, email, number } = req.body;
 
     const validationResult = adminSchema.safeParse({ username, password, email, number });
 
