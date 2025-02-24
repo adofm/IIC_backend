@@ -16,14 +16,14 @@ async function createUser(userData) {
         });
         if (existingUser) {
             console.log("User already exists with the same Email or Phone Number");
-            process.exit(2);
+            throw new Error("User already exists with the same Email or Phone Number");
         }
         const newUser = new User(userData);
         await newUser.save();
         console.log("User created successfully");
     } catch (error) {
         console.error("Error creating user", error);
-        process.exit(3);
+        throw new Error(error)
     }
 }
 export default createUser

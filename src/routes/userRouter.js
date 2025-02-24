@@ -16,8 +16,14 @@ userRouter.post("/register",sanityCheck,async (req,res)=>{
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password,salt);
     userDetails.password=hashedPassword;
-    await createUser(userDetails);
-
+    try {
+        await createUser(userDetails);
+    }
+    catch (error){
+        res.status(401).json({
+            message:error
+        })
+    }
     // Create schema by passing userDetails
 })
 
