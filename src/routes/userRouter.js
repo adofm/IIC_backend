@@ -1,6 +1,6 @@
 import express from "express"
 const userRouter = express.Router()
-
+import sanityCheck from  "../middlewares";
 userRouter.get("/register",(req,res)=>{
     res.json({
         "message":"Send register form"
@@ -13,7 +13,7 @@ userRouter.get("/login",(req,res)=>{
     })
 })
 
-userRouter.post("/login",(req,res)=>{
+userRouter.post("/login",sanityCheck,(req,res)=>{
     const {username, password, email, phone} = req.body;
 
 
